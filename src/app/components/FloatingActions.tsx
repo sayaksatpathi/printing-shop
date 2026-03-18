@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUp, MessageCircle } from 'lucide-react';
+import { getWhatsAppHref } from '@/app/whatsapp';
 
 export function FloatingActions() {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -21,7 +22,7 @@ export function FloatingActions() {
     <>
       {/* WhatsApp Button */}
       <motion.a
-        href="https://wa.me/91XXXXXXXXXX"
+        href={getWhatsAppHref({ text: 'Hi! I want to place an order.' })}
         target="_blank"
         rel="noopener noreferrer"
         initial={{ scale: 0 }}

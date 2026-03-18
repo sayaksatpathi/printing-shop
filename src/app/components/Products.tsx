@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
+import { openWhatsApp } from '@/app/whatsapp';
 
 interface ProductsProps {
   productImages: string[];
@@ -44,6 +45,10 @@ export function Products({ productImages }: ProductsProps) {
       image: productImages[5],
     },
   ];
+
+  const orderMessageFor = (product: { name: string; price: string }) => {
+    return `Hi! I want to place an order.\n\nProduct: ${product.name}\nStarting price: ${product.price}`;
+  };
 
   return (
     <section id="products" className="py-20 bg-[#111111] relative overflow-hidden">
@@ -113,7 +118,15 @@ export function Products({ productImages }: ProductsProps) {
                       {product.price}
                     </div>
                   </div>
-                  <button className="px-6 py-3 bg-[#D72638] text-white font-bold rounded hover:bg-[#b81e2d] transition-all flex items-center gap-2 group-hover:scale-105">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      openWhatsApp({ text: orderMessageFor(product) });
+                    }}
+                    className="px-6 py-3 bg-[#D72638] text-white font-bold rounded hover:bg-[#b81e2d] transition-all flex items-center gap-2 group-hover:scale-105"
+                  >
                     <span style={{ fontFamily: 'Montserrat, sans-serif' }}>ORDER</span>
                     <ArrowRight size={16} />
                   </button>

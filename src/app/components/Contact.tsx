@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { getWhatsAppHref } from '@/app/whatsapp';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -230,7 +231,7 @@ export function Contact() {
 
             {/* WhatsApp CTA */}
             <a
-              href="https://wa.me/91XXXXXXXXXX"
+              href={getWhatsAppHref({ text: 'Hi! I want to place an order / request a quote.' })}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full px-8 py-4 bg-[#25D366] text-white font-bold rounded hover:bg-[#1ebe57] transition-all hover:shadow-xl text-center"
